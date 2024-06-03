@@ -19,6 +19,12 @@ string check_for_file(string loc) {
   return "0";
 }
 
+void create_todo()
+{
+    ofstream file("todo"); 
+    file.close(); 
+}
+
 void get_data(string path, vector<string> &dataset) {
   ifstream input_file(path);
   if (input_file.is_open() == false) {
@@ -124,6 +130,8 @@ int main(int argc,char *argv[]) {
 
   if(file_loc == "0"){
     printf("THERE IS NO TODO FILE IN THE DIRECTORY GIVEN\n");  
+    printf("CREATING THE TODO FILE"); 
+    create_todo(); 
     return 0; 
   }
 
