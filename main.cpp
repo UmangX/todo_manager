@@ -111,10 +111,21 @@ void update(vector<string> &data) {
   }
 }
 
-int main() {
+int main(int argc,char *argv[]) {
 
   string loc = "/Users/synyster7x/projects/cp/dsa";
+    
+  if(argc == 2)
+  {
+      loc = argv[1]; 
+  }
+
   string file_loc = check_for_file(loc);
+
+  if(file_loc == "0"){
+    printf("THERE IS NO TODO FILE IN THE DIRECTORY GIVEN\n");  
+    return 0; 
+  }
 
   vector<string> dataset;
 
