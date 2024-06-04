@@ -19,6 +19,7 @@ string check_for_file(string loc) {
   return "0";
 }
 
+
 void create_todo()
 {
     ofstream file("todo"); 
@@ -60,6 +61,8 @@ void print_dataset(vector<string> &data) {
 
 void checkmark(vector<string> &data, int pos) { data[pos][1] = '-'; }
 
+void uncheckmark(vector<string> &data, int pos) { data[pos][1] = ' '; }
+
 // update the dataset - checks for user for the removal or insertion or check
 void update(vector<string> &data) {
 
@@ -89,7 +92,13 @@ void update(vector<string> &data) {
       int pos;
       cout << "Enter the number to check / complete : ";
       cin >> pos;
-      checkmark(data, pos);
+      char mark = data[pos][1]; 
+      if(mark == '-')
+      {
+        uncheckmark(data,pos); 
+      }else{
+        checkmark(data,pos); 
+      }
       print_dataset(data);
       break;
     }
@@ -119,7 +128,7 @@ void update(vector<string> &data) {
 
 int main(int argc,char *argv[]) {
 
-  string loc = "/Users/synyster7x/projects/cp/dsa";
+  string loc  = std::filesystem::current_path(); 
     
   if(argc == 2)
   {
