@@ -1,6 +1,7 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <ncurses.h>
 #include <vector>
 using namespace std;
 
@@ -19,11 +20,9 @@ string check_for_file(string loc) {
   return "0";
 }
 
-
-void create_todo()
-{
-    ofstream file("todo"); 
-    file.close(); 
+void create_todo() {
+  ofstream file("todo");
+  file.close();
 }
 
 void get_data(string path, vector<string> &dataset) {
@@ -92,12 +91,11 @@ void update(vector<string> &data) {
       int pos;
       cout << "Enter the number to check / complete : ";
       cin >> pos;
-      char mark = data[pos][1]; 
-      if(mark == '-')
-      {
-        uncheckmark(data,pos); 
-      }else{
-        checkmark(data,pos); 
+      char mark = data[pos][1];
+      if (mark == '-') {
+        uncheckmark(data, pos);
+      } else {
+        checkmark(data, pos);
       }
       print_dataset(data);
       break;
@@ -126,22 +124,21 @@ void update(vector<string> &data) {
   }
 }
 
-int main(int argc,char *argv[]) {
+int main(int argc, char *argv[]) {
 
-  string loc  = std::filesystem::current_path(); 
-    
-  if(argc == 2)
-  {
-      loc = argv[1]; 
+  string loc = std::filesystem::current_path();
+
+  if (argc == 2) {
+    loc = argv[1];
   }
 
   string file_loc = check_for_file(loc);
 
-  if(file_loc == "0"){
-    printf("THERE IS NO TODO FILE IN THE DIRECTORY GIVEN\n");  
-    printf("CREATING THE TODO FILE"); 
-    create_todo(); 
-    return 0; 
+  if (file_loc == "0") {
+    printf("THERE IS NO TODO FILE IN THE DIRECTORY GIVEN\n");
+    printf("CREATING THE TODO FILE");
+    create_todo();
+    return 0;
   }
 
   vector<string> dataset;
