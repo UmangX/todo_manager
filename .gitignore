@@ -1,2 +1,6 @@
 bin/
 build/
+gui 
+out 
+.vscode 
+todo
